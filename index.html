@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+     Name: Wen Qiu
+     Date: April 20, 2019
+     Section: CSE 154 AJ
+     This is the index.html page for the LinkedIntList playground.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js"></script>
+    <title>LinkedIntList Playground</title>
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <h1>LinkedIntList Playground</h1>
+      </header>
+      <button id="restart"></button>
+
+      <section id="menu-view">
+        <p>
+          Welcome to LinkedIntList Playground<br />
+          Please enter the size and data in your<br />
+          LinkedIntList<br />
+        </p>
+        <div>
+          <label>Size</label>
+          <input id="size-input" type="number" value="0" min="0" max="8" maxlength="1"/>
+          <label>(Integer between 0 and 8)</label>
+        </div>
+        <div id="data-container">
+          <label>Data</label>
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+          <input class="data hidden" type="number" min="-99" max="99" value="0" />
+        </div>
+        <button id="submit">Let's Get Started!</button>
+      </section>
+      <section id="playground">
+        <section id="canvas">
+          <h2>list</h2>
+          <div>
+            <img src="img/arrow.png" alt="arrow" />
+          </div>
+          <div id="node-container">
+          </div>
+          <h2>null<h2>
+        </section>
+        <section id="interface">
+          <div id="editor">
+            <h2 id="code-area">list</h2>
+          </div>
+          <div id="button-control">
+            <button id="next">.next</button>
+            <button id="data">.data</button>
+            <button id="undo">Undo</button>
+            <button id="run">Run!</button>
+          </div>
+          <div id="output">
+            <h2>Output</h2>
+            <h2></h2>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+</html>
