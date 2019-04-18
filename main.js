@@ -2,7 +2,7 @@
  * Name: Wen Qiu
  * Date: April 20, 2019
  * Section: CSE 154 AJ
- * This is the JS to implement the UI for the LinkedIntList playground, accept
+ * This is the JavaScript to implement the UI for the LinkedIntList playground, accept
  * user input on size and data of the LinkedIntList, and a simplified Java code
  * editor that allows them to access the nodes and the data in the LinkedIntList.
  */
@@ -12,6 +12,7 @@
   const MIN_DATA_INPUT = -99;
   const MAX_SIZE = 8;
   const MIN_SIZE = 0;
+  const COMMAND_LENGTH = 5;
 
   window.addEventListener("load", init);
 
@@ -20,7 +21,7 @@
    */
   function init() {
     id("size-input").addEventListener("change", updateDataInputFields);
-    let dataFields = findClass("data");
+    let dataFields = qsa(".data");
     for(let i = 0; i < dataFields.length; i++) {
       dataFields[i].addEventListener("change", checkData);
     }
@@ -43,12 +44,11 @@
 
   /**
    * Helper method for getting an array of elements by class
-   * @param {String} classID - the class name with which the target objects are
-   *                         attached to
+   * @param {String} selector - the selector used to select the target elements
    * @return {Element[]} An array of elements in the DOM with the given class
    */
-  function findClass(classID) {
-    return document.getElementsByClassName(classID);
+  function qsa(selector) {
+    return document.querySelectorAll(selector);
   }
 
   /**
@@ -139,9 +139,9 @@
   function undo() {
     let undoResult = id("code-area").textContent;
     // Avoid deleting "list"
-    if(undoResult.length > 5) {
+    if(undoResult.length > COMMAND_LENGTH) {
       // Remove the last command added from the code
-      undoResult = undoResult.substring(0, undoResult.length - 5);
+      undoResult = undoResult.substring(0, undoResult.length - COMMAND_LENGTH);
       id("code-area").textContent = undoResult;
     }
     toggleButtons(true);
@@ -210,7 +210,7 @@
    * Removes the shake class from all elements
    */
   function removeShakes() {
-    let shakes = findClass("shake");
+    let shakes = qsa(".shake");
     for(let i = 0; i < shakes.length; i++) {
       shakes[i].classList.remove("shake");
     }

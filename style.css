@@ -27,12 +27,11 @@ button {
   background-image: url("img/restart.png");
   height: 176px;
   width: 64px;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
 }
 
 #restart:hover {
   animation: slide-down;
+  /* Not work if factor these out */
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -43,21 +42,6 @@ button {
   }
   100% {
     transform: translateY(30px);
-  }
-}
-
-#restart:default {
-  animation: slide-up;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-30px);
   }
 }
 
@@ -116,11 +100,13 @@ button {
 
 .shake {
   animation-name: shake-bottom;
+  /* Not work if factor this out */
   animation-duration: 0.5s;
 }
 
 .hide-menu-view {
   animation: hide-menu;
+  /* Not work if factor these out */
   animation-duration: 0.25s;
   animation-fill-mode: forwards;
 }
@@ -136,6 +122,7 @@ button {
 
 .show-menu-view {
   animation: show-menu;
+  /* Not work if factor these out */
   animation-duration: 0.25s;
   animation-fill-mode: forwards;
 }
