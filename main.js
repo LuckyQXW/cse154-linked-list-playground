@@ -11,6 +11,9 @@
 
   window.addEventListener("load", init);
 
+  /*
+   * Initialization. Attach event listeners to all the elements
+   */
   function init() {
     id("size-input").addEventListener("change", updateDataInputFields);
     let dataFields = findClass("data");
@@ -27,6 +30,8 @@
 
   /**
    * Helper method for getting element by id
+   * @param String elementID - the id with which the target objects are attached to
+   * @return Element in the DOM with the given id
    */
   function id(elementID) {
     return document.getElementById(elementID);
@@ -36,6 +41,7 @@
    * Helper method for getting an array of elements by class
    * @param String classID - the class name with which the target objects are
    *                         attached to
+   * @return An array of elements in the DOM with the given class
    */
   function findClass(classID) {
     return document.getElementsByClassName(classID);
@@ -44,7 +50,7 @@
   /**
    * Update the number of available data input fields dynamically based on
    * the size input from the user, shows alert if the size field is not an
-   * integer between 0 and 8
+   * integer between 0 and 8 and resets the size to 0
    */
   function updateDataInputFields() {
     let size = parseFloat(id("size-input").value);
@@ -56,6 +62,7 @@
     let max = container.children.length;
     let num = Math.min(parseInt(id("size-input").value), max);
 
+    // Start with 1 to skip the "list" part of the code
     for(let i = 0; i < num + 1; i++) {
       container.children[i].classList.remove("hidden");
     }
@@ -66,7 +73,7 @@
 
   /**
    * Checks whether the data input is valid, shows alert if the data input is
-   * not an integer between -99 and 99
+   * not an integer between -99 and 99 and resets the input to 0
    */
   function checkData() {
     let data = parseFloat(this.value);
@@ -78,7 +85,7 @@
 
   /**
    * Updates the LinkedIntList visualization on the playground based on user
-   * input of size and data
+   * input of size and data, and hides the menu
    */
   function updatePlayground() {
     let data = id("data-container").children;
@@ -97,13 +104,13 @@
   }
 
   /**
-   * Resets the state of the playground
+   * Resets the state of the playground and shows the menu
    */
   function reset() {
     toggleMenu(true);
     id("node-container").innerHTML = "";
     id("code-area").textContent = "list";
-    id("output").children[1].textContent = "";
+    id("output-string").textContent = "";
     toggleButtons(true);
   }
 
@@ -142,7 +149,6 @@
     void this.offsetWidth;
     let code = id("code-area").textContent.split(".");
     let nodes = id("node-container").children;
-    let output = id("output");
     let index = 0;
     let getVal = false;
     // Parse code
@@ -167,7 +173,7 @@
         result = "The node with value " + nodes[index].children[0].textContent;
       }
     }
-    output.children[1].textContent = result;
+    id("output-string").textContent = result;
   }
 
   /**

@@ -21,7 +21,7 @@
       <div id="show-menu">
         <button id="restart"></button>
       </div>
-      <section id="menu-view">
+      <section id="menu-view" class="flex">
         <p>
           Welcome to LinkedIntList Playground<br />
           Please enter the size and data in your<br />
@@ -46,21 +46,24 @@
         <button id="submit">Let's Get Started!</button>
       </section>
       <section id="playground">
-        <section id="canvas">
+        <section id="canvas" class="flex">
           <h2>list</h2>
           <div>
+            <!--
+              Self-made asset
+            -->
             <img src="img/arrow.png" alt="arrow" />
           </div>
-          <div id="node-container">
+          <div id="node-container" class="flex">
           </div>
           <h2>null<h2>
         </section>
         <section id="interface">
           <h2>Use buttons below to construct your list node code</h2>
-          <div id="editor">
+          <div id="editor" class="flex">
             <h2 id="code-area">list</h2>
           </div>
-          <div id="button-control">
+          <div id="button-control" class="flex">
             <button id="next">.next</button>
             <button id="data">.data</button>
             <button id="undo">Undo</button>
@@ -68,13 +71,10 @@
           </div>
           <div id="output">
             <h2>Output</h2>
-            <h2></h2>
+            <h2 id="output-string"></h2>
           </div>
         </section>
       </section>
     </main>
-
-    <footer>
-    </footer>
   </body>
 </html>

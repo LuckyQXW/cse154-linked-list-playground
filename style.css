@@ -5,89 +5,39 @@
     This is the style.css page for the LinkedIntList playground.
 */
 
-main, header, #menu-view {
-  width: 100%;
-}
-
-main, #code-area {
-  color: white;
-}
-
 header {
   z-index: 1;
+  padding-left: 20px;
 }
 
-body, button {
-  font-family: monaco, sans-serif;
+h2, #menu-view input {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
-body, #canvas, #button-control, #editor, #node-container, #menu-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#menu-view input, button:enabled, h2, .nodes p {
-  color: #838383;
-}
-
-#menu-view, header, #editor, #code-area {
-  background-color: #838383;
+button {
+  width: 120px;
+  height: 50px;
+  font-size: 30px;
 }
 
 #menu-view {
   height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
   font-size: 50px;
   flex-direction: column;
   z-index: 2;
 }
 
-#menu-view input, .nodes p {
-  font-size: 40px;
-  text-align: center;
-}
-
-#menu-view, button, input {
-  border-radius: 10px;
-}
-
-#menu-view input, #restart {
-  border-width: 0px;
-}
-
-#menu-view input {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-#menu-view button {
-  margin-top: 50px;
-  width: 400px;
-}
-
 #restart {
   background-image: url("img/restart.png");
-  background-size: cover;
   height: 176px;
   width: 64px;
-}
-
-#show-menu {
-  margin-left: 80%;
-  text-align: center;
-}
-
-#restart:hover {
-  animation: slide-down;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
-#restart:default {
-  animation: slide-up;
+#restart:hover {
+  animation: slide-down;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -101,6 +51,12 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
   }
 }
 
+#restart:default {
+  animation: slide-up;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes slide-up {
   0% {
     transform: translateY(0);
@@ -110,14 +66,62 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
   }
 }
 
-.hide-menu-view {
-  animation: hide-menu;
-  animation-duration: 0.25s;
-  animation-fill-mode: forwards;
+#show-menu {
+  margin-left: 85%;
 }
 
-.show-menu-view {
-  animation: show-menu;
+#canvas {
+  margin-top: 60px;
+  flex-flow: row wrap;
+}
+
+#interface {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+}
+
+#editor {
+  justify-content: flex-start;
+  height: 100px;
+}
+
+#code-area {
+  font-size: 20px;
+  margin-left: 50px;
+  margin-top: 35px;
+}
+
+#button-control {
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+#menu-view button {
+  margin-top: 50px;
+  width: 400px;
+}
+
+#data-container {
+  flex-direction: row;
+}
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.shake {
+  animation-name: shake-bottom;
+  animation-duration: 0.5s;
+}
+
+.hide-menu-view {
+  animation: hide-menu;
   animation-duration: 0.25s;
   animation-fill-mode: forwards;
 }
@@ -131,6 +135,12 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
   }
 }
 
+.show-menu-view {
+  animation: show-menu;
+  animation-duration: 0.25s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes show-menu {
   0% {
     transform: translateY(-800px);
@@ -140,103 +150,89 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
   }
 }
 
-#data-container, #node-container {
-  flex-direction: row;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-left: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-#canvas {
-  margin-top: 50px;
-  flex-flow: row wrap;
-}
-
-h2 {
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
 .nodes {
   width: 150px;
   height: 60px;
   background-image: url("img/node.png");
-  background-size: cover;
-}
-
-.nodes p {
-  font-size: 40px;
-  width: 80px;
-  margin-top: 5px;
-  margin-bottom: 0px;
-}
-
-.shake {
-  animation-name: shake-bottom;
-  animation-duration: 0.5s;
 }
 
 @keyframes shake-bottom {
   0%,
   100% {
-            transform: rotate(0deg);
-            transform-origin: 50% 100%;
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
   }
   10% {
-            transform: rotate(2deg);
+    transform: rotate(2deg);
   }
   20%,
   40%,
   60% {
-            transform: rotate(-4deg);
+    transform: rotate(-4deg);
   }
   30%,
   50%,
   70% {
-            transform: rotate(4deg);
+    transform: rotate(4deg);
   }
   80% {
-            transform: rotate(-2deg);
+    transform: rotate(-2deg);
   }
   90% {
-            transform: rotate(2deg);
+    transform: rotate(2deg);
   }
 }
 
-#interface {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 80px;
+.nodes p {
+  width: 80px;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
-#code-area {
-  font-size: 20px;
-  margin-left: 50px;
+body, button {
+  font-family: monaco, sans-serif;
 }
 
-#editor {
-  justify-content: flex-start;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100px;
+main, header, #menu-view {
+  width: 100%;
 }
 
-#button-control {
-  margin-top: 20px;
-  justify-content: space-around;
+main, #code-area {
+  color: white;
 }
 
-button {
-  width: 120px;
-  height: 50px;
-  font-size: 30px;
+header, #menu-view {
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+h2, button:enabled, .nodes p, #menu-view input {
+  color: #838383;
+}
+
+header, #menu-view, #editor, #code-area {
+  background-color: #838383;
+}
+
+button, input, #menu-view {
+  border-radius: 10px;
+}
+
+#restart, #menu-view input {
+  border-width: 0px;
+}
+
+#canvas, #node-container, #menu-view {
+  justify-content: center;
+  align-items: center;
+}
+
+#restart, .nodes {
+  background-size: cover;
+}
+
+#menu-view input, .nodes p {
+  font-size: 40px;
+  text-align: center;
 }
