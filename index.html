@@ -29,7 +29,7 @@
         </p>
         <div>
           <label>Size</label>
-          <input id="size-input" type="number" value="0" min="0" max="8" maxlength="1"/>
+          <input id="size-input" type="number" value="0" min="0" max="8"/>
           <label>(Integer between 0 and 8)</label>
         </div>
         <div id="data-container">
@@ -45,35 +45,33 @@
         </div>
         <button id="submit">Let's Get Started!</button>
       </section>
-      <section id="playground">
-        <section id="canvas" class="flex">
-          <h2>list</h2>
-          <div>
-            <!--
-              Self-made asset
-            -->
-            <img src="img/arrow.png" alt="arrow" />
-          </div>
-          <div id="node-container" class="flex">
-          </div>
-          <h2>null<h2>
-        </section>
-        <section id="interface">
-          <h2>Use buttons below to construct your list node code</h2>
-          <div id="editor" class="flex">
-            <h2 id="code-area">list</h2>
-          </div>
-          <div id="button-control" class="flex">
-            <button id="next">.next</button>
-            <button id="data">.data</button>
-            <button id="undo">Undo</button>
-            <button id="run">Run!</button>
-          </div>
-          <div id="output">
-            <h2>Output</h2>
-            <h2 id="output-string"></h2>
-          </div>
-        </section>
+
+      <section id="canvas" class="flex">
+        <h2>list</h2>
+        <div>
+          <!--
+            Self-made asset
+          -->
+          <img src="img/arrow.png" alt="arrow" />
+        </div>
+        <div id="node-container" class="flex"></div>
+        <h2>null</h2>
+      </section>
+      <section id="interface">
+        <h2>Use buttons below to construct your list node code</h2>
+        <div id="editor" class="flex">
+          <h2 id="code-area">list</h2>
+        </div>
+        <div id="button-control" class="flex">
+          <button id="next">.next</button>
+          <button id="data">.data</button>
+          <button id="undo">Undo</button>
+          <button id="run">Run!</button>
+        </div>
+        <div id="output">
+          <h2>Output</h2>
+          <h2 id="output-string"></h2>
+        </div>
       </section>
     </main>
   </body>

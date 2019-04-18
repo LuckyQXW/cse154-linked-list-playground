@@ -8,10 +8,14 @@
  */
 (function() {
   "use strict";
+  const MAX_DATA_INPUT = 99;
+  const MIN_DATA_INPUT = -99;
+  const MAX_SIZE = 8;
+  const MIN_SIZE = 0;
 
   window.addEventListener("load", init);
 
-  /*
+  /**
    * Initialization. Attach event listeners to all the elements
    */
   function init() {
@@ -30,8 +34,8 @@
 
   /**
    * Helper method for getting element by id
-   * @param String elementID - the id with which the target objects are attached to
-   * @return Element in the DOM with the given id
+   * @param {String} elementID - the id with which the target objects are attached to
+   * @return {Element} the DOM element object with the specified id
    */
   function id(elementID) {
     return document.getElementById(elementID);
@@ -39,9 +43,9 @@
 
   /**
    * Helper method for getting an array of elements by class
-   * @param String classID - the class name with which the target objects are
+   * @param {String} classID - the class name with which the target objects are
    *                         attached to
-   * @return An array of elements in the DOM with the given class
+   * @return {Element[]} An array of elements in the DOM with the given class
    */
   function findClass(classID) {
     return document.getElementsByClassName(classID);
@@ -54,7 +58,7 @@
    */
   function updateDataInputFields() {
     let size = parseFloat(id("size-input").value);
-    if(!Number.isInteger(size) || size < 0 || size > 8) {
+    if(!Number.isInteger(size) || size < MIN_SIZE || size > MAX_SIZE) {
       alert("Please enter an integer between 0 and 8 for size");
       id("size-input").value = 0;
     }
@@ -77,7 +81,7 @@
    */
   function checkData() {
     let data = parseFloat(this.value);
-    if(!Number.isInteger(data) || data < -99 || data > 99) {
+    if(!Number.isInteger(data) || data < MIN_DATA_INPUT || data > MAX_DATA_INPUT) {
       alert("Please enter an integer between -99 and 99 for data");
       this.value = 0;
     }
@@ -134,7 +138,9 @@
    */
   function undo() {
     let undoResult = id("code-area").textContent;
+    // Avoid deleting "list"
     if(undoResult.length > 5) {
+      // Remove the last command added from the code
       undoResult = undoResult.substring(0, undoResult.length - 5);
       id("code-area").textContent = undoResult;
     }
@@ -146,6 +152,7 @@
    */
   function run() {
     removeShakes();
+    // Trigger reflow to make the shake animation work properly
     void this.offsetWidth;
     let code = id("code-area").textContent.split(".");
     let nodes = id("node-container").children;
@@ -178,7 +185,7 @@
 
   /**
    * Toggles the .next and .data buttons
-   * @param boolean enabled - true for enabling buttons, false for disabling buttons
+   * @param {boolean} enabled - true for enabling buttons, false for disabling buttons
    */
   function toggleButtons(enabled) {
     id("next").disabled = !enabled;
@@ -187,7 +194,7 @@
 
   /**
    * Toggles the menu view
-   * @param boolean show - true for showing the menu, false for hiding the menu
+   * @param {boolean} show - true for showing the menu, false for hiding the menu
    */
   function toggleMenu(show) {
     if(!show) {
@@ -203,7 +210,7 @@
    * Removes the shake class from all elements
    */
   function removeShakes() {
-    let shakes = document.querySelectorAll(".shake");
+    let shakes = findClass("shake");
     for(let i = 0; i < shakes.length; i++) {
       shakes[i].classList.remove("shake");
     }
