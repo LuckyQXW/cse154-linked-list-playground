@@ -27,7 +27,7 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
   align-items: center;
 }
 
-#menu-view input, #menu-view button, h2, .nodes p {
+#menu-view input, button:enabled, h2, .nodes p {
   color: #838383;
 }
 
@@ -50,7 +50,7 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
   text-align: center;
 }
 
-#menu-view, button {
+#menu-view, button, input {
   border-radius: 10px;
 }
 
@@ -64,16 +64,20 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
 }
 
 #menu-view button {
-  margin-top: 10px;
+  margin-top: 50px;
   width: 400px;
 }
 
 #restart {
-  background-image: url("img/pull_ring.png");
+  background-image: url("img/restart.png");
   background-size: cover;
   height: 176px;
   width: 64px;
-  margin-left: 90%;
+}
+
+#show-menu {
+  margin-left: 80%;
+  text-align: center;
 }
 
 #restart:hover {
@@ -93,7 +97,7 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(50px);
+    transform: translateY(30px);
   }
 }
 
@@ -102,7 +106,7 @@ body, #canvas, #button-control, #editor, #node-container, #menu-view {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-50px);
+    transform: translateY(-30px);
   }
 }
 
@@ -152,7 +156,7 @@ header {
 }
 
 #canvas {
-  margin-top: 80px;
+  margin-top: 50px;
   flex-flow: row wrap;
 }
 
@@ -175,10 +179,43 @@ h2 {
   margin-bottom: 0px;
 }
 
+.shake {
+  animation-name: shake-bottom;
+  animation-duration: 0.5s;
+}
+
+@keyframes shake-bottom {
+  0%,
+  100% {
+            transform: rotate(0deg);
+            transform-origin: 50% 100%;
+  }
+  10% {
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+            transform: rotate(4deg);
+  }
+  80% {
+            transform: rotate(-2deg);
+  }
+  90% {
+            transform: rotate(2deg);
+  }
+}
+
 #interface {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 80px;
 }
 
 #code-area {
@@ -190,7 +227,6 @@ h2 {
   justify-content: flex-start;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
   height: 100px;
 }
 

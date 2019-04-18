@@ -9,41 +9,52 @@
 (function() {
   "use strict";
 
-  window.onload = function() {
-    $("size-input").addEventListener("change", updateDataInputFields);
-    let dataFields = document.getElementsByClassName("data");
+  window.addEventListener("load", init);
+
+  function init() {
+    id("size-input").addEventListener("change", updateDataInputFields);
+    let dataFields = findClass("data");
     for(let i = 0; i < dataFields.length; i++) {
       dataFields[i].addEventListener("change", checkData);
     }
-    $("submit").addEventListener("click", updatePlayground);
-    $("next").addEventListener("click", appendNext);
-    $("data").addEventListener("click", appendData);
-    $("undo").addEventListener("click", undo);
-    $("run").addEventListener("click", run);
-    $("restart").addEventListener("click", reset);
-  };
+    id("submit").addEventListener("click", updatePlayground);
+    id("next").addEventListener("click", appendNext);
+    id("data").addEventListener("click", appendData);
+    id("undo").addEventListener("click", undo);
+    id("run").addEventListener("click", run);
+    id("restart").addEventListener("click", reset);
+  }
 
   /**
-   * Short hand for geeting element by id
-   * TODO: change the name of the function to id()
+   * Helper method for getting element by id
    */
-  function $(id) {
-    return document.getElementById(id);
+  function id(elementID) {
+    return document.getElementById(elementID);
+  }
+
+  /**
+   * Helper method for getting an array of elements by class
+   * @param String classID - the class name with which the target objects are
+   *                         attached to
+   */
+  function findClass(classID) {
+    return document.getElementsByClassName(classID);
   }
 
   /**
    * Update the number of available data input fields dynamically based on
-   * the size input from the user
+   * the size input from the user, shows alert if the size field is not an
+   * integer between 0 and 8
    */
   function updateDataInputFields() {
-    let size = parseFloat($("size-input").value);
+    let size = parseFloat(id("size-input").value);
     if(!Number.isInteger(size) || size < 0 || size > 8) {
       alert("Please enter an integer between 0 and 8 for size");
-      $("size-input").value = 0;
+      id("size-input").value = 0;
     }
-    let container = $("data-container");
+    let container = id("data-container");
     let max = container.children.length;
-    let num = Math.min(parseInt($("size-input").value), max);
+    let num = Math.min(parseInt(id("size-input").value), max);
 
     for(let i = 0; i < num + 1; i++) {
       container.children[i].classList.remove("hidden");
@@ -54,16 +65,14 @@
   }
 
   /**
-   * Checks whether the data input is valid
+   * Checks whether the data input is valid, shows alert if the data input is
+   * not an integer between -99 and 99
    */
   function checkData() {
-    let dataFields = document.getElementsByClassName("data");
-    for(let i = 0; i < dataFields.length; i++) {
-      let data = parseFloat(dataFields[i].value);
-      if(!Number.isInteger(data) || data < -99 || data > 99) {
-        alert("Please enter an integer between -99 and 99 for data");
-        dataFields[i].value = 0;
-      }
+    let data = parseFloat(this.value);
+    if(!Number.isInteger(data) || data < -99 || data > 99) {
+      alert("Please enter an integer between -99 and 99 for data");
+      this.value = 0;
     }
   }
 
@@ -72,8 +81,8 @@
    * input of size and data
    */
   function updatePlayground() {
-    let data = $("data-container").children;
-    let container = $("node-container");
+    let data = id("data-container").children;
+    let container = id("node-container");
     for(let i = 1; i < data.length; i++) {
       if(!data[i].classList.contains("hidden")) {
         let node = document.createElement("div");
@@ -92,24 +101,24 @@
    */
   function reset() {
     toggleMenu(true);
-     $("node-container").innerHTML = "";
-     $("code-area").textContent = "list";
-     $("output").children[1].textContent = "";
-     toggleButtons(true);
+    id("node-container").innerHTML = "";
+    id("code-area").textContent = "list";
+    id("output").children[1].textContent = "";
+    toggleButtons(true);
   }
 
   /**
-   * Append .next to the code in the editor
+   * Append .next to the code in the code area
    */
   function appendNext() {
-    $("code-area").textContent += ".next";
+    id("code-area").textContent += ".next";
   }
 
   /**
-   * Append .data to the code in the editor
+   * Append .data to the code in the code area
    */
   function appendData() {
-    $("code-area").textContent += ".data";
+    id("code-area").textContent += ".data";
     toggleButtons(false);
   }
 
@@ -117,21 +126,23 @@
    * Undos the last modification to the code in the editor
    */
   function undo() {
-    let undoResult = $("code-area").textContent;
+    let undoResult = id("code-area").textContent;
     if(undoResult.length > 5) {
       undoResult = undoResult.substring(0, undoResult.length - 5);
-      $("code-area").textContent = undoResult;
+      id("code-area").textContent = undoResult;
     }
     toggleButtons(true);
   }
 
   /**
-   * Parses the code and displays output
+   * Parses the code in the code area and displays output
    */
   function run() {
-    let code = $("code-area").textContent.split(".");
-    let nodes = $("node-container").children;
-    let output = $("output");
+    removeShakes();
+    void this.offsetWidth;
+    let code = id("code-area").textContent.split(".");
+    let nodes = id("node-container").children;
+    let output = id("output");
     let index = 0;
     let getVal = false;
     // Parse code
@@ -148,10 +159,13 @@
       result = "null";
     } else if(nodes[index] === undefined) {
       result = "NullPointerException()";
-    } else if(getVal) {
-      result = nodes[index].children[0].textContent;
     } else {
-      result = "The node with value " + nodes[index].children[0].textContent;
+      nodes[index].classList.toggle("shake", true);
+      if(getVal) {
+        result = nodes[index].children[0].textContent;
+      } else {
+        result = "The node with value " + nodes[index].children[0].textContent;
+      }
     }
     output.children[1].textContent = result;
   }
@@ -161,18 +175,31 @@
    * @param boolean enabled - true for enabling buttons, false for disabling buttons
    */
   function toggleButtons(enabled) {
-    $("next").disabled = !enabled;
-    $("data").disabled = !enabled;
+    id("next").disabled = !enabled;
+    id("data").disabled = !enabled;
   }
 
+  /**
+   * Toggles the menu view
+   * @param boolean show - true for showing the menu, false for hiding the menu
+   */
   function toggleMenu(show) {
     if(!show) {
-      $("menu-view").classList.add("hide-menu-view");
-      $("menu-view").classList.remove("show-menu-view");
+      id("menu-view").classList.add("hide-menu-view");
+      id("menu-view").classList.remove("show-menu-view");
     } else {
-      $("menu-view").classList.remove("hide-menu-view");
-      $("menu-view").classList.add("show-menu-view");
+      id("menu-view").classList.remove("hide-menu-view");
+      id("menu-view").classList.add("show-menu-view");
     }
   }
 
+  /**
+   * Removes the shake class from all elements
+   */
+  function removeShakes() {
+    let shakes = document.querySelectorAll(".shake");
+    for(let i = 0; i < shakes.length; i++) {
+      shakes[i].classList.remove("shake");
+    }
+  }
 })();
