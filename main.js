@@ -17,7 +17,7 @@
   window.addEventListener("load", init);
 
   /**
-   * Initialization after the page loads. Attach event listeners to all the
+   * Initialization after the window loads. Attaches event listeners to all the
    * interactive elements
    */
   function init() {
@@ -37,16 +37,16 @@
   /**
    * Helper method for getting element by id
    * @param {String} elementID - the id with which the target objects are attached to
-   * @return {Element} the DOM element object with the specified id
+   * @return {Object} the DOM element object with the specified id
    */
   function id(elementID) {
     return document.getElementById(elementID);
   }
 
   /**
-   * Helper method for getting an array of elements by class
+   * Helper method for getting an array of elements by selector
    * @param {String} selector - the selector used to select the target elements
-   * @return {Element[]} An array of elements in the DOM with the given class
+   * @return {Object[]} An array of elements in the DOM selected with the given selector
    */
   function qsa(selector) {
     return document.querySelectorAll(selector);
@@ -70,7 +70,6 @@
     let max = container.children.length;
     let num = Math.min(parseInt(id("size-input").value), max);
 
-    // Start with 1 to skip the "list" part of the code
     for(let i = 0; i < num + 1; i++) {
       container.children[i].classList.remove("hidden");
     }
@@ -101,6 +100,7 @@
   function updatePlayground() {
     let data = id("data-container").children;
     let container = id("node-container");
+    // Start with 1 to skip the data label
     for(let i = 1; i < data.length; i++) {
       if(!data[i].classList.contains("hidden")) {
         let node = document.createElement("div");
@@ -126,14 +126,14 @@
   }
 
   /**
-   * Append .next to the code in the code area
+   * Appends .next to the code in the code area
    */
   function appendNext() {
     id("code-area").textContent += ".next";
   }
 
   /**
-   * Append .data to the code in the code area
+   * Appends .data to the code in the code area
    */
   function appendData() {
     id("code-area").textContent += ".data";
@@ -162,10 +162,9 @@
     // Trigger reflow to make the shake animation work properly
     void this.offsetWidth;
     let code = id("code-area").textContent.split(".");
-    let nodes = id("node-container").children;
     let index = 0;
     let getVal = false;
-    // Parse code
+    // Parse code, start with 1 to skip the "list" part of the code
     for(let i = 1; i < code.length; i++) {
       if(code[i] === "next") {
         index++;
@@ -173,7 +172,18 @@
         getVal = true;
       }
     }
-    // Determine output
+    id("output-string").textContent = determineOutput(index, getVal);
+  }
+
+  /**
+   * Determines the output of the code
+   * @param {int} index - the index of the target list node
+   * @param {boolean} getVal - true to return the data of the node, false to return
+   *                           a string representation of the node
+   * @return {String} a string representation of the output
+   */
+  function determineOutput(index, getVal) {
+    let nodes = id("node-container").children;
     let result = "";
     if(index === nodes.length && !getVal) {
       result = "null";
@@ -187,7 +197,7 @@
         result = "The node with value " + nodes[index].children[0].textContent;
       }
     }
-    id("output-string").textContent = result;
+    return result;
   }
 
   /**

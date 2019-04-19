@@ -115,15 +115,6 @@ button {
   animation-fill-mode: forwards;
 }
 
-@keyframes hide-menu {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-800px);
-  }
-}
-
 .show-menu-view {
   animation: show-menu;
   /* Not work if factor these out */
@@ -131,46 +122,10 @@ button {
   animation-fill-mode: forwards;
 }
 
-@keyframes show-menu {
-  0% {
-    transform: translateY(-800px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
 .nodes {
   width: 150px;
   height: 60px;
   background-image: url("img/node.png");
-}
-
-@keyframes shake-bottom {
-  0%,
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 50% 100%;
-  }
-  10% {
-    transform: rotate(2deg);
-  }
-  20%,
-  40%,
-  60% {
-    transform: rotate(-4deg);
-  }
-  30%,
-  50%,
-  70% {
-    transform: rotate(4deg);
-  }
-  80% {
-    transform: rotate(-2deg);
-  }
-  90% {
-    transform: rotate(2deg);
-  }
 }
 
 .nodes p {
@@ -230,4 +185,49 @@ button, input, #menu-view {
 #menu-view input, .nodes p {
   font-size: 40px;
   text-align: center;
+}
+
+@keyframes hide-menu {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-800px);
+  }
+}
+
+@keyframes show-menu {
+  0% {
+    transform: translateY(-800px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes shake-bottom {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
 }
