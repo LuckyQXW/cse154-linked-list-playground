@@ -17,7 +17,8 @@
   window.addEventListener("load", init);
 
   /**
-   * Initialization. Attach event listeners to all the elements
+   * Initialization after the page loads. Attach event listeners to all the
+   * interactive elements
    */
   function init() {
     id("size-input").addEventListener("change", updateDataInputFields);
@@ -207,7 +208,7 @@
   }
 
   /**
-   * Removes the shake class from all elements
+   * Removes the shake class from all elements with that class
    */
   function removeShakes() {
     let shakes = qsa(".shake");
