@@ -86,8 +86,12 @@ button {
 }
 
 #menu-view button {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 400px;
+}
+
+#constraints p {
+  font-size: 20px;
 }
 
 .flex {

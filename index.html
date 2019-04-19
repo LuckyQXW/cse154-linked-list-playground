@@ -30,7 +30,6 @@
         <div>
           <label>Size</label>
           <input id="size-input" type="number" value="0" min="0" max="8"/>
-          <label>(Integer between 0 and 8)</label>
         </div>
         <div id="data-container">
           <label>Data</label>
@@ -42,6 +41,10 @@
           <input class="data hidden" type="number" min="-99" max="99" value="0" />
           <input class="data hidden" type="number" min="-99" max="99" value="0" />
           <input class="data hidden" type="number" min="-99" max="99" value="0" />
+        </div>
+        <div id="constraints">
+          <p><em>Size: integer between 0 and 8</em></p>
+          <p><em>Data: integers between -99 and 99</em></p>
         </div>
         <button id="submit">Let's Get Started!</button>
       </section>

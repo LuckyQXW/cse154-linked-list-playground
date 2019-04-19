@@ -54,14 +54,17 @@
 
   /**
    * Update the number of available data input fields dynamically based on
-   * the size input from the user, shows alert if the size field is not an
+   * the size input from the user, shakes constraints text if the size field is not an
    * integer between 0 and 8 and resets the size to 0
    */
   function updateDataInputFields() {
-    let size = parseFloat(id("size-input").value);
+    removeShakes();
+    let size = parseFloat(this.value);
+    // Trigger reflow to make the shake animation work properly
+    void this.offsetWidth;
     if(!Number.isInteger(size) || size < MIN_SIZE || size > MAX_SIZE) {
-      alert("Please enter an integer between 0 and 8 for size");
-      id("size-input").value = 0;
+      id("constraints").classList.add("shake");
+      this.value = 0;
     }
     let container = id("data-container");
     let max = container.children.length;
@@ -77,13 +80,16 @@
   }
 
   /**
-   * Checks whether the data input is valid, shows alert if the data input is
+   * Checks whether the data input is valid, shakes constraints text if the data input is
    * not an integer between -99 and 99 and resets the input to 0
    */
   function checkData() {
+    removeShakes();
     let data = parseFloat(this.value);
+    // Trigger reflow to make the shake animation work properly
+    void this.offsetWidth;
     if(!Number.isInteger(data) || data < MIN_DATA_INPUT || data > MAX_DATA_INPUT) {
-      alert("Please enter an integer between -99 and 99 for data");
+      id("constraints").classList.add("shake");
       this.value = 0;
     }
   }
