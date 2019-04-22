@@ -13,6 +13,7 @@
   const MAX_SIZE = 8;
   const MIN_SIZE = 0;
   const COMMAND_LENGTH = 5;
+  const RESET_DELAY = 500;
 
   window.addEventListener("load", init);
 
@@ -119,9 +120,13 @@
    */
   function reset() {
     toggleMenu(true);
-    id("node-container").innerHTML = "";
-    id("code-area").textContent = "list";
-    id("output-string").textContent = "";
+    // Use setTimeout to avoid users seeing the canvas being reset as the menu
+    // sliding down
+    setTimeout(function() {
+      id("node-container").innerHTML = "";
+      id("code-area").textContent = "list";
+      id("output-string").textContent = "";
+    }, RESET_DELAY);
     toggleButtons(true);
   }
 
