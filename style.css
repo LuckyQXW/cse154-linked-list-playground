@@ -1,0 +1,233 @@
+/*
+    Name: Wen Qiu
+    Date: April 20, 2019
+    Section: CSE 154 AJ
+    This is the style.css page for the LinkedIntList playground.
+*/
+
+header {
+  z-index: 1;
+  padding-left: 20px;
+}
+
+button {
+  width: 120px;
+  height: 50px;
+  font-size: 30px;
+}
+
+#menu-view {
+  height: 100%;
+  font-size: 50px;
+  flex-direction: column;
+  z-index: 2;
+}
+
+#restart {
+  background-image: url("img/restart.png");
+  height: 176px;
+  width: 64px;
+}
+
+#restart:hover {
+  animation: slide-down;
+  /* Not work if factor these out */
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(30px);
+  }
+}
+
+#data-container {
+  flex-direction: row;
+}
+
+#show-menu {
+  margin-left: 85%;
+}
+
+#canvas {
+  margin-top: 60px;
+  flex-flow: row wrap;
+}
+
+#interface {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+}
+
+#editor {
+  justify-content: flex-start;
+  height: 100px;
+}
+
+#code-area {
+  font-size: 20px;
+  margin-left: 50px;
+  margin-top: 35px;
+}
+
+#button-control {
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+#output h2 {
+  text-decoration: underline;
+}
+
+#menu-view button {
+  margin-top: 20px;
+  width: 400px;
+}
+
+#constraints p {
+  font-size: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.shake {
+  animation-name: shake-bottom;
+  /* Not work if factor this out */
+  animation-duration: 0.5s;
+}
+
+.hide-menu-view {
+  animation: hide-menu;
+  /* Not work if factor these out */
+  animation-duration: 0.25s;
+  animation-fill-mode: forwards;
+}
+
+.show-menu-view {
+  animation: show-menu;
+  /* Not work if factor these out */
+  animation-duration: 0.25s;
+  animation-fill-mode: forwards;
+}
+
+.nodes {
+  width: 150px;
+  height: 60px;
+  background-image: url("img/node.png");
+}
+
+.nodes p {
+  width: 80px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+body, button {
+  font-family: monaco, sans-serif;
+}
+
+main, header, #menu-view {
+  width: 100%;
+}
+
+main, #code-area {
+  color: white;
+}
+
+header, #menu-view {
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+h2, #menu-view input {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+h2, button:enabled, #menu-view input, .nodes p {
+  color: #838383;
+}
+
+header, #menu-view, #editor, #code-area {
+  background-color: #838383;
+}
+
+button, input, #menu-view {
+  border-radius: 10px;
+}
+
+#restart, #menu-view input {
+  border-width: 0px;
+}
+
+#canvas, #node-container, #menu-view {
+  justify-content: center;
+  align-items: center;
+}
+
+#restart, .nodes {
+  background-size: cover;
+}
+
+#menu-view input, .nodes p {
+  font-size: 40px;
+  text-align: center;
+}
+
+@keyframes hide-menu {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-800px);
+  }
+}
+
+@keyframes show-menu {
+  0% {
+    transform: translateY(-800px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes shake-bottom {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}
