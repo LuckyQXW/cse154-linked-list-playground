@@ -1,3 +1,22 @@
+# Linked List Playground
+## Motivation
+The goal of this project is to practice using JavaScript to manipulate DOM elements with event handlers. I always want to create some visualizations for data structures and as a TA for STARS CSE143 workshop, I was inspired to build a LinkedIntList simulator that can be used by CSE143 students to get familiar with how the .next field of list nodes refer to other nodes, as well as why NullPointerExceptions occur. 
+
+## Process
+I spent one night sketching out the element of the main interface and then made a higher fidelity prototype in AdobeXD. Initially, I planned to let users to type in code and use JavaScript to parse the code, but I realized that the user behavior could be extremely unpredictable. So I decided to make buttons that users can click on and build up the code, and limit certain behaviors like disabling .next button after users click on .data, because it does not make sense to access the next field on data field for list nodes. Fortunately, both .next and .data consist of 5 characters so when users click on Undo, I can just remove 5 characters from the end of the code they are building up without worrying about different cases. 
+
+The Linked List Playground consists of two major views: a full-screen menu where users can configure their linked list with basic form validation, and a playground view where users can build up code and inspect their linked list. After having functional code, I added CSS animations for smoother transition and more intuitive inspection. When users click "Let's Get Started", the menu view slides up simulating a raised curtain. As they are using the playground and click "Run", other than seeing the data of the node in the output area, I also included a shake animation to the node they are currently referring to in their code. The Reset button at the top right corner has a shape like a handle and will slide down a little bit as users hover over it. When they click on it, the menu view slides back down, simulating a pull action. I utilized setTimeout to delay the reset of DOM elements as the menu view is sliding to avoid showing them the process.
+
+The most difficult bug I encountered involved the shaking animation, when the same node stops shaking if I click the "Run" button consecutively. When I tried to reproduce the bug with the inspector, however, the bug disappears as I stepped through the code. Turns out I need to trigger a reflow of the whole page for the consecutive animation to work properly, and to do that I need to add "void this.offsetWidth;" after I removed the animation and before I added it again. 
+
+In the end, I showed my friends my project and asked for feedbacks. Many of them pointed out that they are confused about what to do after the menu view slides up, so I added an instruction "Use buttons below to construct your list node code. Run to see the output!" above the code area as guidance. 
+
+## Takeaway
++ Find a good balance between giving users too little and too much control
++ Use animations strategically
++ Heisenbugs could exist, and if they show up consistently, try to see if others are getting the same problem and understand why it happens
++ Having someone to walk through the experience can yield valuable feedback
+
 # Creative Project 2 Specification
 ## Overview
 For your second creative project, you will use what we're learning about JavaScript (JS) to
